@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+  <div class="container">
+    <h2 class="mt-5 mb-3">Create a new User</h2>
+    <form action="/task/create" method="post">
+      <div class="mb-3">
+        <label for="inputTask">Nombre(s):</label>
+        <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task">
+        <label for="inputTask">Apellido paterno:</label>
+        <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task">
+        <label for="inputTask">Apellido materno:</label>
+        <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task">
+        <label for="inputTask">Domicilio:</label>
+        <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task">
+        <label for="inputTask">Correo:</label>
+        <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task">
+      </div>         
+      <button type="submit" class="btn btn-primary">Add</button>
+      <a class="btn btn-outline-dark cancel" href="/">Cancel</a>
+    </form>
+  </div>
+
+<%- include('partials/footer') %>
