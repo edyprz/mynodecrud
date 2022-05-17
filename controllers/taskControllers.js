@@ -3,7 +3,7 @@ const taskModel = require('../models/taskModels');
 
 // Index page controller
 function task_index (request, response) {
-  taskModel.getTasks((queryResult) => {
+  taskModel.getUsers((queryResult) => {
     console.log(queryResult);
     response.render('index', { users: queryResult });
   });
@@ -16,11 +16,11 @@ const task_about = (request, response) => {
 
 // Create task page controllers
 // GET
-function task_create_get (request, response) {
+function create_user (request, response) {
   response.render('create');
 };
 // POST
-function task_create_post (request, response) {
+function create_user_post (request, response) {
   const task = request.body.Task;
   const status = 'In progress';
   taskModel.createTask(task, status, (result) => {
@@ -34,6 +34,6 @@ function task_create_post (request, response) {
 module.exports = {
   task_index,
   task_about,
-  task_create_get,
-  task_create_post
+  create_user,
+  create_user_post
 };

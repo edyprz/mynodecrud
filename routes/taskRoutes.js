@@ -12,8 +12,8 @@ router.get('/', taskController.task_index);
 router.get('/about', taskController.task_about);
 
 // GET/POST Create page
-router.get('/task/create', taskController.task_create_get);
-router.post('/task/create', taskController.task_create_post);
+router.get('/user/create', taskController.create_user);
+router.post('/user/create', taskController.create_user_post);
 
 // Export router
 module.exports = router;

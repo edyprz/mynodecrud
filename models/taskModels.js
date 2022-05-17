@@ -2,7 +2,7 @@
 const database = require('../utils/database.js');
 
 // Get all users from database
-const getTasks = (callback) => {
+const getUsers = (callback) => {
   const sql = `SELECT * FROM USERS`;
   database.appDatabase.all(sql, [], (error, rows) => {
     if (error) {
@@ -15,8 +15,9 @@ const getTasks = (callback) => {
 };
 
 // Create new task
-const createTask = (task, status, callback) => {
-    const sql = `INSERT INTO Tasks (Task, Status) VALUES ('${task}', '${status}')`;
+const createUser = (task, status, callback) => {
+    const sql = `INSERT INTO Users (NOMBRES,A_MATERNO,A_PATERNO,DOMICILIO,CORREO)
+    VALUES ('${task}', '${status}')`;
     database.appDatabase.run(sql, [], (error, row) => {
       if (error) {
         callback(error.message);
@@ -29,6 +30,6 @@ const createTask = (task, status, callback) => {
 
 // Export models
 module.exports = {
-  getTasks,
-  createTask
+  getUsers,
+  createUser
 };
