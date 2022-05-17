@@ -14,15 +14,15 @@ const getUsers = (callback) => {
   });
 };
 
-// Create new task
-const createUser = (task, status, callback) => {
+// Create new User
+const createUser = (User, callback) => {
     const sql = `INSERT INTO Users (NOMBRES,A_MATERNO,A_PATERNO,DOMICILIO,CORREO)
-    VALUES ('${task}', '${status}')`;
+    VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}')`;
     database.appDatabase.run(sql, [], (error, row) => {
       if (error) {
         callback(error.message);
       }
-      const successMessage = "The task was entered successfully."
+      const successMessage = "The USER was entered successfully."
       callback(successMessage);
     });
   };

@@ -13,6 +13,7 @@ router.get('/about', taskController.task_about);
 
 // GET/POST Create page
 router.get('/user/create', taskController.create_user);
+//router.post('/user/create', taskController.create_user_post);
 router.post('/user/create', taskController.create_user_post);
 
 // Export router
