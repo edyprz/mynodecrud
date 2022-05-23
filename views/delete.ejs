@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h2 class="mt-5 mb-3">Delete user</h2>
+  <form action="/user/delete/<%= user.ID %>" method="post">
+    <div class="mb-3">
+      <label for="inputTask">User:</label>
+      <input readonly autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.NOMBRES + ' ' + 
+      user.A_PATERNO + ' ' + user.A_MATERNO %>">
+    </div>         
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-outline-dark cancel" href="/">Cancel</a>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

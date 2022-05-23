@@ -16,7 +16,7 @@ const getUsers = (callback) => {
 
 // Create new User
 const createUser = (User, callback) => {
-    const sql = `INSERT INTO Users (NOMBRES,A_MATERNO,A_PATERNO,DOMICILIO,CORREO)
+    const sql = `INSERT INTO Users (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO)
     VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}')`;
     database.appDatabase.run(sql, [], (error, row) => {
       if (error) {
@@ -40,7 +40,9 @@ const getUser = (id, callback) => {
 
 //Update user  
 const updateUser = (user, id, callback) => {
-  let sql = `UPDATE Users SET NOMBRES = '${user.N}', Status = '${status}' WHERE (ID = ${id})`;
+  let sql = `UPDATE USERS SET NOMBRES = '${user.NOMBRES}', A_MATERNO = '${user.A_MATERNO}',
+  A_PATERNO = '${user.A_PATERNO}',DOMICILIO = '${user.DOMICILIO}',CORREO = '${user.CORREO}'
+  WHERE (ID = ${id})`;
   database.appDatabase.run(sql, [], (error, row) => {
     if (error) {
       callback(error.message);
@@ -50,11 +52,23 @@ const updateUser = (user, id, callback) => {
   });
 };
 
-
+// Delete user 
+const deleteUser = (id, callback) => {
+  const sql = `DELETE FROM USERS WHERE ID = ${id}`;
+  database.appDatabase.run(sql, [], (error, row) => {
+    if (error) {
+      callback(error.message);
+    }
+    const successMessage = "The USER was successfully deleted."
+    callback(successMessage);
+  });
+};
 
 // Export models
 module.exports = {
   getUsers,
   createUser,
-  getUser
+  getUser,
+  updateUser,
+  deleteUser
 };

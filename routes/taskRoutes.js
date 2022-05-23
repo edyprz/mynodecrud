@@ -21,7 +21,7 @@ router.post('/user/update/:id', taskController.user_update_post);
 
 // GET/POST Delete user
 router.get('/user/delete/:id', taskController.user_delete_get);
-//router.post('/user/delete/:id', taskController.user_delete_post);
+router.post('/user/delete/:id', taskController.user_delete_post);
 
 // Export router
 module.exports = router;

@@ -5,19 +5,19 @@
   <form action="/user/update/<%= user.ID %>" method="post">
     <div class="mb-3">
       <label for="inputTask">Nombre(s):</label>
-      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.NOMBRES %>">
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="NOMBRES" value="<%= user.NOMBRES %>">
 
       <label for="inputTask">Apellido paterno:</label>
-      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.A_MATERNO %>">
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="A_PATERNO" value="<%= user.A_PATERNO %>">
 
       <label for="inputTask">Apellido materno:</label>
-      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.A_PATERNO %>">
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="A_MATERNO" value="<%= user.A_MATERNO %>">
 
       <label for="inputTask">Domicilio:</label>
-      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.DOMICILIO %>">
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="DOMICILIO" value="<%= user.DOMICILIO %>">
 
       <label for="inputTask">Correo:</label>
-      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.CORREO %>">
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="CORREO" value="<%= user.CORREO %>">
             
     </div>        
     <button type="submit" class="btn btn-warning">Update</button>

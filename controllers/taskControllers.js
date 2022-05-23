@@ -33,19 +33,17 @@ function create_user_post (request, response) {
 // GET
 const user_delete_get = (request, response) => {
   const id = request.params.id;
-  console.log(id);
-  //taskModel.getTask(id, (result) => {
-    //console.log(result);
-   // response.render('delete', { task: result });
- // });
+  taskModel.getUser(id, (result) => {
+    response.render('delete', { user: result });
+  });
 };
 // POST
-//const user_delete_post = (request, response) => {
- // const id = request.params.id;
- // taskModel.deleteTask(id, () => {
-   // response.redirect('/');
-  //});
-//};
+const user_delete_post = (request, response) => {
+  const id = request.params.id;
+  taskModel.deleteUser(id, () => {
+    response.redirect('/');
+  });
+};
 
 // Update task page controllers
 // GET
@@ -73,7 +71,7 @@ module.exports = {
   create_user,
   create_user_post,
   user_delete_get,
-  //user_delete_post,
+  user_delete_post,
   user_update_get,
   user_update_post
 };
