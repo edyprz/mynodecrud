@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h2 class="mt-5 mb-3">Update user</h2>
+  <form action="/user/update/<%= user.ID %>" method="post">
+    <div class="mb-3">
+      <label for="inputTask">Nombre(s):</label>
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.NOMBRES %>">
+
+      <label for="inputTask">Apellido paterno:</label>
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.A_MATERNO %>">
+
+      <label for="inputTask">Apellido materno:</label>
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.A_PATERNO %>">
+
+      <label for="inputTask">Domicilio:</label>
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.DOMICILIO %>">
+
+      <label for="inputTask">Correo:</label>
+      <input autofocus type="text" class="form-control shadow-none mb-3" id="inputTask" name="Task" value="<%= user.CORREO %>">
+            
+    </div>        
+    <button type="submit" class="btn btn-warning">Update</button>
+    <a class="btn btn-outline-dark cancel" href="/">Cancel</a>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

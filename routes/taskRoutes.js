@@ -11,10 +11,17 @@ router.get('/', taskController.task_index);
 // GET About Page
 router.get('/about', taskController.task_about);
 
-// GET/POST Create page
+// GET/POST Create user
 router.get('/user/create', taskController.create_user);
-//router.post('/user/create', taskController.create_user_post);
 router.post('/user/create', taskController.create_user_post);
+
+// GET/POST  Update user
+router.get('/user/update/:id', taskController.user_update_get);
+router.post('/user/update/:id', taskController.user_update_post);
+
+// GET/POST Delete user
+router.get('/user/delete/:id', taskController.user_delete_get);
+//router.post('/user/delete/:id', taskController.user_delete_post);
 
 // Export router
 module.exports = router;

@@ -14,7 +14,7 @@ const task_about = (request, response) => {
     response.render('about');
 };
 
-// Create task page controllers
+// Create user page controllers
 // GET
 function create_user (request, response) {
   response.render('create');
@@ -29,11 +29,51 @@ function create_user_post (request, response) {
   });
 };
 
+// Delete task page controllers
+// GET
+const user_delete_get = (request, response) => {
+  const id = request.params.id;
+  console.log(id);
+  //taskModel.getTask(id, (result) => {
+    //console.log(result);
+   // response.render('delete', { task: result });
+ // });
+};
+// POST
+//const user_delete_post = (request, response) => {
+ // const id = request.params.id;
+ // taskModel.deleteTask(id, () => {
+   // response.redirect('/');
+  //});
+//};
+
+// Update task page controllers
+// GET
+const user_update_get = (request, response) => {
+  const id = request.params.id;
+  taskModel.getUser(id, (result) => {
+    response.render('update', { user: result });
+  });
+};
+// POST
+const user_update_post = (request, response) => {
+  const user = request.body;
+  console.log(user);
+  //const status = request.body.Status;
+  const id = request.params.id;
+  taskModel.updateUser(user, id, () => {
+    response.redirect('/');
+  });
+};
 
 // Export controllers
 module.exports = {
   task_index,
   task_about,
   create_user,
-  create_user_post
+  create_user_post,
+  user_delete_get,
+  //user_delete_post,
+  user_update_get,
+  user_update_post
 };

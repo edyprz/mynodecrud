@@ -26,8 +26,8 @@
         <td><%= user.DOMICILIO %></td>
         <td><%= user.CORREO %></td>
         <td class="d-print-none">
-          <a class="btn btn-sm btn-warning" href="/user/update/<%= User.ID %>" >Update</a>
-          <a class="btn btn-sm btn-danger"  href="/user/delete/<%= User.ID %>"  >Delete</a>
+          <a class="btn btn-sm btn-warning" href="/user/update/<%= user.ID %>" >Update</a>
+          <a class="btn btn-sm btn-danger"  href="/user/delete/<%= user.ID %>"  >Delete</a>
         </td>
       </tr>
       <% } %>
