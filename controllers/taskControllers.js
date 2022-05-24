@@ -1,6 +1,10 @@
 // Load modules
 const taskModel = require('../models/taskModels');
 
+function signin(req,res){
+  response.render('login');
+}
+
 // Index page controller
 function task_index (request, response) {
   taskModel.getUsers((queryResult) => {
@@ -73,5 +77,6 @@ module.exports = {
   user_delete_get,
   user_delete_post,
   user_update_get,
-  user_update_post
+  user_update_post,
+  signin
 };

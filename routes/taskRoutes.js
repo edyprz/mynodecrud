@@ -5,6 +5,12 @@ const taskController = require('../controllers/taskControllers');
 //  Create route handler
 const router = express.Router();
 
+//login
+router.route('/signin')
+    .get((req, res) => {
+        res.render('login');
+    });
+
 // Respond when a GET request is made to the index page
 router.get('/', taskController.task_index);
 
@@ -22,6 +28,8 @@ router.post('/user/update/:id', taskController.user_update_post);
 // GET/POST Delete user
 router.get('/user/delete/:id', taskController.user_delete_get);
 router.post('/user/delete/:id', taskController.user_delete_post);
+
+
 
 // Export router
 module.exports = router;

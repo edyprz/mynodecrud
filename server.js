@@ -23,7 +23,10 @@ app.use(taskRoutes);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
   
-// Listen on port 8080 for connections
-app.listen(8080, () => {
-    console.log('Server started and listening at http://localhost:8080');
-  });
+// Listen on port 3000 for connections
+async function init(){
+  await app.listen(3000);
+  console.log('Server running at http://localhost:3000');
+}
+
+init();
