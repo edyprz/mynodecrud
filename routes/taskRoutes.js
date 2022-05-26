@@ -5,11 +5,11 @@ const taskController = require('../controllers/taskControllers');
 //  Create route handler
 const router = express.Router();
 
+router.route()
+
 //login
-router.route('/signin')
-    .get((req, res) => {
-        res.render('login');
-    });
+//router.get('/login',taskController.signin_get);
+//router.post('/login',taskController.signin_post);
 
 // Respond when a GET request is made to the index page
 router.get('/', taskController.task_index);

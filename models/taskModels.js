@@ -1,6 +1,17 @@
 // Load modules
 const database = require('../utils/database.js');
 
+// Login with email
+const loginUser = (correo, callback) => {
+  const sql = `SELECT * FROM Users WHERE CORREO = ${new String(correo)}`;
+  database.appDatabase.get(sql, [], (error, row) => {
+    if (error) {
+      callback(error.message);
+    }
+    callback (row);
+  });
+};
+
 // Get all users from database
 const getUsers = (callback) => {
   const sql = `SELECT * FROM USERS`;
@@ -8,7 +19,6 @@ const getUsers = (callback) => {
     if (error) {
       console.error(error.message);
      /// console.error("i dont know");
-
     }
     callback(rows);
   });
@@ -70,5 +80,6 @@ module.exports = {
   createUser,
   getUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser
 };

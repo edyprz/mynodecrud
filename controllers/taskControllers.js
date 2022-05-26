@@ -1,15 +1,45 @@
 // Load modules
 const taskModel = require('../models/taskModels');
+const jwt = require("jsonwebtoken");
+let token = null;
+var contraseña = '123456';
 
-function signin(req,res){
-  response.render('login');
+//Login page
+//get
+function signin_get(req,res){
+  res.render('login');
+ // res.send('login page');
 }
+//post
+async function signin_post(req,res){
+  const correo = JSON.stringify(req.body.correo);
+  console.log(correo);
+
+  let result = await taskModel.loginUser(correo, (user) => console.log(user));
+  //printing the user found by email
+  console.log(result);
+  //token = jwt.sign({correo:correo},contraseña,{expiresIn: 60*60*24})
+  //console.log(token);
+  res.redirect('/');
+
+
+  }
+
 
 // Index page controller
-function task_index (request, response) {
+function task_index (req, res) {
+  //console.log(contraseña);
+  //if(!token){
+    //return res.status(401).json({
+      //auth: false,
+      //message: 'No token provided'
+    //});
+  //}
+
+  //const decoded = jwt.verify(token,contraseña);
+  //console.log(decoded);
   taskModel.getUsers((queryResult) => {
-    //console.log(queryResult);
-    response.render('index', { users: queryResult });
+    res.render('index', { users: queryResult });
   });
 };
 
@@ -78,5 +108,6 @@ module.exports = {
   user_delete_post,
   user_update_get,
   user_update_post,
-  signin
+  signin_get,
+  signin_post
 };

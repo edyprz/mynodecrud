@@ -3,5 +3,6 @@ INSERT INTO USERS (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO)
 VALUES ("edgar humberto","perez","martinez","loma bonita","devil97humper@gmail.com");
 
 SELECT * FROM USERS;
+SELECT * FROM Users WHERE CORREO = 'juan@gmail.com'
 
 DROP TABLE USERS;
