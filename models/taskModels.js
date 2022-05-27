@@ -2,13 +2,14 @@
 const database = require('../utils/database.js');
 
 // Login with email
-const loginUser = (correo, callback) => {
+const loginUser = (correo,callback) => {
   const sql = `SELECT * FROM Users WHERE CORREO = ${new String(correo)}`;
   database.appDatabase.get(sql, [], (error, row) => {
     if (error) {
-      callback(error.message);
+      //console.log(error)
+      return callback(error.message);
     }
-    callback (row);
+    return callback(row);
   });
 };
 
@@ -17,7 +18,7 @@ const getUsers = (callback) => {
   const sql = `SELECT * FROM USERS`;
   database.appDatabase.all(sql, [], (error, rows) => {
     if (error) {
-      console.error(error.message);
+      console.log(error);
      /// console.error("i dont know");
     }
     callback(rows);

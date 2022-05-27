@@ -11,33 +11,36 @@ function signin_get(req,res){
  // res.send('login page');
 }
 //post
-async function signin_post(req,res){
+function signin_post(req,res){
   const correo = JSON.stringify(req.body.correo);
   console.log(correo);
 
-  let result = await taskModel.loginUser(correo, (user) => console.log(user));
-  //printing the user found by email
-  console.log(result);
-  //token = jwt.sign({correo:correo},contraseña,{expiresIn: 60*60*24})
-  //console.log(token);
-  res.redirect('/');
-
-
+  taskModel.loginUser(correo,(user) => {
+    //console.log(user);
+    if(user == undefined){      
+      
+      return res.send('No user found');
+      //res.redirect('/login');
+    }
+    token = jwt.sign({correo:correo},contraseña,{expiresIn: 60*60*24})
+    console.log(token);
+    return res.redirect('/');    
+  });
   }
 
 
 // Index page controller
 function task_index (req, res) {
   //console.log(contraseña);
-  //if(!token){
-    //return res.status(401).json({
-      //auth: false,
-      //message: 'No token provided'
-    //});
-  //}
+  if(!token){
+    return res.status(401).json({
+      auth: false,
+      message: 'No token provided'
+    });
+  }
 
-  //const decoded = jwt.verify(token,contraseña);
-  //console.log(decoded);
+  const decoded = jwt.verify(token,contraseña);
+  console.log(decoded);
   taskModel.getUsers((queryResult) => {
     res.render('index', { users: queryResult });
   });
