@@ -27,8 +27,8 @@ const getUsers = (callback) => {
 
 // Create new User
 const createUser = (User, callback) => {
-    const sql = `INSERT INTO Users (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO)
-    VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}')`;
+    const sql = `INSERT INTO Users (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO,CONTRASEÑA)
+    VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}','${User.Contraseña}')`;
     database.appDatabase.run(sql, [], (error, row) => {
       if (error) {
         callback(error.message);

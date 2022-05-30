@@ -1,19 +1,19 @@
 // Load modules
 const taskModel = require('../models/taskModels');
 const jwt = require("jsonwebtoken");
-let token = null;
-var contraseña = '123456';
+
 
 //Login page
 //get
 function signin_get(req,res){
   res.render('login');
- // res.send('login page');
 }
 //post
 function signin_post(req,res){
-  const correo = JSON.stringify(req.body.correo);
-  console.log(correo);
+  //console.log(req.body)
+  const {correo,contrasena} = req.body;
+  //console.log(req.cookies.token);
+
 
   taskModel.loginUser(correo,(user) => {
     //console.log(user);
@@ -22,8 +22,12 @@ function signin_post(req,res){
       return res.send('No user found');
       //res.redirect('/login');
     }
-    token = jwt.sign({correo:correo},contraseña,{expiresIn: 60*60*24})
-    console.log(token);
+    const token = jwt.sign({payload:correo},contrasena,{expiresIn: 60*60*24});
+    //console.log(token)
+    res.cookie('JWT',token);
+    //console.log(res.cookie)
+    //console.log('Cookies: ', req.cookies)
+    //console.log('Signed Cookies: ', req.signedCookies)
     return res.redirect('/');    
   });
   }
@@ -32,15 +36,15 @@ function signin_post(req,res){
 // Index page controller
 function task_index (req, res) {
   //console.log(contraseña);
-  if(!token){
-    return res.status(401).json({
-      auth: false,
-      message: 'No token provided'
-    });
-  }
+  //if(!token){
+    //return res.status(401).json({
+      //auth: false,
+      //message: 'No token provided'
+    //});
+  //}
 
-  const decoded = jwt.verify(token,contraseña);
-  console.log(decoded);
+  //const decoded = jwt.verify(token,contraseña);
+  //console.log(decoded);
   taskModel.getUsers((queryResult) => {
     res.render('index', { users: queryResult });
   });
@@ -62,7 +66,7 @@ function create_user_post (request, response) {
   console.log(User);
   taskModel.createUser(User,(result) => {
     console.log(result);
-    response.redirect('/');
+    response.redirect('/login');
   });
 };
 
