@@ -2,14 +2,14 @@
 const database = require('../utils/database.js');
 
 // Login with email
-const loginUser = (correo,callback) => {
-  const sql = `SELECT * FROM Users WHERE CORREO = ${new String(correo)}`;
+const loginUser = (user,callback) => {
+  const sql = `SELECT * FROM Users WHERE CORREO = '${user.correo}' `;
   database.appDatabase.get(sql, [], (error, row) => {
     if (error) {
       //console.log(error)
-      return callback(error.message);
+      callback(error.message);
     }
-    return callback(row);
+    callback(row);
   });
 };
 
@@ -27,8 +27,8 @@ const getUsers = (callback) => {
 
 // Create new User
 const createUser = (User, callback) => {
-    const sql = `INSERT INTO Users (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO,CONTRASEÑA)
-    VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}','${User.Contraseña}')`;
+    const sql = `INSERT INTO Users (NOMBRES,A_PATERNO,A_MATERNO,DOMICILIO,CORREO,CONTRASENA)
+    VALUES ('${User.Nombre}','${User.Apaterno}','${User.Amaterno}','${User.Domicilio}','${User.Correo}','${User.Contrasena}')`;
     database.appDatabase.run(sql, [], (error, row) => {
       if (error) {
         callback(error.message);

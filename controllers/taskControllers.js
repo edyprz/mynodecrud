@@ -1,6 +1,7 @@
 // Load modules
 const taskModel = require('../models/taskModels');
 const jwt = require("jsonwebtoken");
+const config = require("../utils/config");
 
 
 //Login page
@@ -10,24 +11,13 @@ function signin_get(req,res){
 }
 //post
 function signin_post(req,res){
-  //console.log(req.body)
-  const {correo,contrasena} = req.body;
-  //console.log(req.cookies.token);
-
-
-  taskModel.loginUser(correo,(user) => {
-    //console.log(user);
-    if(user == undefined){      
-      
+  const user = req.body;
+  taskModel.loginUser(user,(isUser) => {
+    if(isUser == undefined){      
       return res.send('No user found');
-      //res.redirect('/login');
     }
-    const token = jwt.sign({payload:correo},contrasena,{expiresIn: 60*60*24});
-    //console.log(token)
+    const token = jwt.sign({payload:user.correo},config.secret,{expiresIn: 60*60*24});
     res.cookie('JWT',token);
-    //console.log(res.cookie)
-    //console.log('Cookies: ', req.cookies)
-    //console.log('Signed Cookies: ', req.signedCookies)
     return res.redirect('/');    
   });
   }
@@ -35,16 +25,6 @@ function signin_post(req,res){
 
 // Index page controller
 function task_index (req, res) {
-  //console.log(contraseña);
-  //if(!token){
-    //return res.status(401).json({
-      //auth: false,
-      //message: 'No token provided'
-    //});
-  //}
-
-  //const decoded = jwt.verify(token,contraseña);
-  //console.log(decoded);
   taskModel.getUsers((queryResult) => {
     res.render('index', { users: queryResult });
   });
